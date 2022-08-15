@@ -2,7 +2,7 @@ const nodeMailer = require("nodemailer");
 require('dotenv').config({path: require("find-config")(".env")});
 
 const sendEmail = async (mailObj) => {
-    const {from, recipients, subject, message} = mailObj;
+    const {recipients, subject, message} = mailObj;
 
     try {
 
@@ -27,23 +27,28 @@ const sendEmail = async (mailObj) => {
         });
 
         let mailStatus = await transporter.sendMail({
-            from: from,
+            from: process.env.SendGridFrom,
             to: recipients,
             subject: subject,
             text: message
         });
-        
-        return `Messagge sent: ${mailStatus.messageId}`;
+
+        return {
+            error: false,
+            message: `Messagge sent with ID: ${mailStatus.messageId}`
+        }
     }
 
     catch(error) {
-        console.error(error);
 
-        throw new Error(`Something went wrong in the sendmail method. Error: ${error.message}`);
+        return {
+            error: true,
+            message: error.message
+        }
     }
 }
 
-const mailObj = {
+/* const mailObj = {
   //from: "the.sachins18@gmail.com",
   from: "sachin.sh1820@gmail.com",
   recipients: ["sachin.sh1800@gmail.com"],
@@ -54,6 +59,6 @@ const mailObj = {
 
 sendEmail(mailObj).then((res) => {
   console.log(res);
-});
+}); */
 
 module.exports.sendEmail = sendEmail;
