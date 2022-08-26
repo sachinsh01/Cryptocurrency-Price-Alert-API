@@ -17,7 +17,7 @@ db.once("open", () => {
     console.log("Database Connected");
 });
 
-const sendAlert = new CronJob("*/2 * * * * *", async function () {
+const sendAlert = new CronJob("*/30 * * * * *", async function () {
     let priceObj = await currentPrice();
 
     if (priceObj.error)
