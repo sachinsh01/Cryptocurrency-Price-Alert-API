@@ -9,7 +9,7 @@ router.get("/", authenticateToken, cache, alerts);
 
 router.post("/create", authenticateToken, create);
 
-router.delete("/delete", del);
+router.delete("/delete", authenticateToken, del);
 
 
 module.exports = router;
