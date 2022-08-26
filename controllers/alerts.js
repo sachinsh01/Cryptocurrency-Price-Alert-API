@@ -5,15 +5,15 @@ const User = require("../models/user");
 
 const redis = require("redis");
 
-const client = redis.createClient();
+//const client = redis.createClient();
 
-/* const client = redis.createClient({
+const client = redis.createClient({
     socket: {
         host: "redis-15490.c264.ap-south-1-1.ec2.cloud.redislabs.com",
         port: 15490
     },
     password: "Pm7EJEdLc5pgq73RdEkY1YCGup8CDJL3"
-}); */
+});
 
 client.on('error', err => {
     console.log('Error ' + err);
