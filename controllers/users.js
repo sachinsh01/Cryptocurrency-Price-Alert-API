@@ -38,7 +38,7 @@ module.exports.login = async (req, res) => {
         if (await bcrypt.compare(req.body.password, user.password)) {
             payload = { email: user.email };
 
-            const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1000s" });
+            const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1800s" });
             const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET);
 
             //user.rToken.push(refreshToken);
