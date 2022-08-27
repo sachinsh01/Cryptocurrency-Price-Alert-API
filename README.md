@@ -78,10 +78,6 @@ RedisURL=<redisURL>
 4. Run the following commands in different terminals to start the server:
 
 ```
-npm run start
-```
-
-```
 node server.js
 ```
 
